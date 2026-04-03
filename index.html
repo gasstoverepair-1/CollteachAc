@@ -1,0 +1,1192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CoolTech • AC &amp; Refrigeration Experts</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Space+Grotesk:wght@500;600&amp;display=swap');
+        
+        :root {
+            --primary: #0ea5e9;
+        }
+        
+        .tail-container {
+            font-family: 'Inter', system_ui, sans-serif;
+        }
+        
+        .logo-font {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        .hero-bg {
+            background: linear-gradient(90deg, rgba(15, 23, 42, 0.85) 0%, rgba(15, 23, 42, 0.75) 100%), 
+                        url('https://picsum.photos/id/1015/2000/1200') center/cover no-repeat;
+        }
+
+        .service-card {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .service-card:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 25px 50px -12px rgb(14 165 233);
+        }
+
+        .nav-link {
+            position: relative;
+        }
+        
+        .nav-link:after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -2px;
+            left: 0;
+            background-color: #0ea5e9;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-link:hover:after {
+            width: 100%;
+        }
+
+        .badge {
+            animation: ping 2s cubic-bezier(0, 0, 0.2, 1) infinite;
+        }
+
+        .stat-number {
+            font-variant-numeric: tabular-nums;
+        }
+
+        .cool-glow {
+            filter: drop-shadow(0 0 15px rgb(14 165 233));
+        }
+        
+        .section-header {
+            position: relative;
+        }
+        
+        .section-header:after {
+            content: '';
+            position: absolute;
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(to right, #0ea5e9, #22d3ee);
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .floating-btn {
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+        }
+
+        .service-icon {
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        
+        .service-card:hover .service-icon {
+            transform: scale(1.15) rotate(12deg);
+        }
+
+        .location-pill {
+            transition: all 0.2s ease;
+        }
+        
+        .location-pill:hover {
+            background-color: #0ea5e9;
+            color: white;
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body class="tail-container bg-slate-950 text-slate-200 overflow-x-hidden">
+    <!-- NAVBAR -->
+    <nav class="bg-slate-950 border-b border-slate-800 fixed w-full z-50">
+        <div class="max-w-screen-2xl mx-auto">
+            <div class="px-8 py-5 flex items-center justify-between">
+                <!-- Logo -->
+                <div class="flex items-center gap-x-3">
+                    <div class="w-10 h-10 bg-sky-500 rounded-2xl flex items-center justify-center shadow-inner cool-glow">
+                        <i class="fa-solid fa-snowflake text-white text-3xl"></i>
+                    </div>
+                    <div>
+                        <span class="logo-font text-3xl font-semibold tracking-tighter text-white">COOL</span>
+                        <span class="logo-font text-3xl font-semibold tracking-tighter text-sky-400">TECH</span>
+                    </div>
+                </div>
+
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex items-center gap-x-8 text-sm font-medium">
+                    <a href="#home" onclick="smoothScrollTo('home')" class="nav-link text-slate-300 hover:text-white transition-colors">HOME</a>
+                    <a href="#services" onclick="smoothScrollTo('services')" class="nav-link text-slate-300 hover:text-white transition-colors">SERVICES</a>
+                    <a href="#areas" onclick="smoothScrollTo('areas')" class="nav-link text-slate-300 hover:text-white transition-colors">AREAS</a>
+                    <a href="#pricing" onclick="smoothScrollTo('pricing')" class="nav-link text-slate-300 hover:text-white transition-colors">PRICING</a>
+                    <a href="#testimonials" onclick="smoothScrollTo('testimonials')" class="nav-link text-slate-300 hover:text-white transition-colors">REVIEWS</a>
+                </div>
+
+                <div class="flex items-center gap-x-4">
+                    <div onclick="showBookingModal()" 
+                         class="hidden sm:flex items-center gap-x-2 bg-emerald-500 hover:bg-emerald-600 transition-colors text-white text-sm font-semibold px-5 py-2.5 rounded-3xl cursor-pointer">
+                        <i class="fa-solid fa-calendar-check"></i>
+                        <span>BOOK NOW</span>
+                    </div>
+                    
+                    <a href="tel:6363918128" 
+                       class="flex items-center justify-center w-10 h-10 bg-white text-slate-900 rounded-2xl hover:scale-110 transition-transform">
+                        <i class="fa-solid fa-phone text-lg"></i>
+                    </a>
+                    
+                    <!-- Mobile hamburger -->
+                    <button onclick="toggleMobileMenu()" 
+                            class="md:hidden w-10 h-10 flex items-center justify-center text-2xl text-white">
+                        <i class="fa-solid fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- MOBILE MENU -->
+        <div id="mobile-menu" class="hidden md:hidden bg-slate-900 border-t border-slate-800 py-6 px-8">
+            <div class="flex flex-col gap-y-6 text-lg">
+                <a href="#home" onclick="toggleMobileMenu();smoothScrollTo('home')" class="font-medium">Home</a>
+                <a href="#services" onclick="toggleMobileMenu();smoothScrollTo('services')" class="font-medium">Services</a>
+                <a href="#areas" onclick="toggleMobileMenu();smoothScrollTo('areas')" class="font-medium">Service Areas</a>
+                <a href="#pricing" onclick="toggleMobileMenu();smoothScrollTo('pricing')" class="font-medium">Pricing</a>
+                <a href="#testimonials" onclick="toggleMobileMenu();smoothScrollTo('testimonials')" class="font-medium">Customer Reviews</a>
+                
+                <div class="pt-6 border-t border-slate-700">
+                    <a href="tel:6363918128" 
+                       class="flex items-center justify-center gap-x-3 bg-white text-slate-900 py-4 rounded-3xl font-semibold text-base">
+                        <i class="fa-solid fa-phone"></i>
+                        <span>CALL 63639 18128</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <header id="home" class="hero-bg min-h-screen flex items-center pt-16">
+        <div class="max-w-screen-2xl mx-auto px-6 md:px-12 grid md:grid-cols-12 gap-12 items-center h-full">
+            <div class="md:col-span-7 pt-12 md:pt-0">
+                <div class="inline-flex items-center gap-x-2 bg-white/10 backdrop-blur-md text-white text-xs font-medium tracking-widest px-5 py-2 rounded-3xl mb-6 border border-white/30">
+                    <div class="w-2 h-2 bg-emerald-400 rounded-full animate-pulse"></div>
+                    60-MINUTE RESPONSE
+                </div>
+                
+                <h1 class="text-5xl md:text-6xl lg:text-7xl font-semibold leading-none text-white tracking-tighter logo-font">
+                    AC &amp; REFRIGERATOR<br>REPAIR IN<br><span class="text-sky-300">GREATER NOIDA</span>
+                </h1>
+                
+                <p class="mt-6 max-w-md text-lg text-slate-300">
+                    Fast doorstep service in Greater Noida, Dadri, Surajpur, Aither &amp; Indirapuram. 
+                    Certified technicians. Genuine parts. 30-day warranty.
+                </p>
+                
+                <div class="flex items-center gap-x-4 mt-10">
+                    <button onclick="showBookingModal()" 
+                            class="flex-1 md:flex-none bg-yellow-400 hover:bg-amber-400 transition-all text-slate-950 font-semibold text-xl py-6 px-10 rounded-3xl flex items-center justify-center gap-x-3 shadow-2xl shadow-yellow-500/30">
+                        <i class="fa-solid fa-bolt"></i>
+                        <span>GET 60 MIN SERVICE</span>
+                    </button>
+                    
+                    <a href="tel:6363918128" 
+                       class="flex-1 md:flex-none border border-white/60 hover:border-white text-white font-medium py-6 px-8 rounded-3xl flex items-center justify-center gap-x-3 transition-colors">
+                        <i class="fa-solid fa-phone"></i>
+                        <div>
+                            <div class="text-xs tracking-widest opacity-70">CALL NOW</div>
+                            <div class="font-mono text-lg">63639 18128</div>
+                        </div>
+                    </a>
+                </div>
+                
+                <div class="flex items-center gap-x-8 mt-14">
+                    <div class="flex items-center">
+                        <div class="flex -space-x-4">
+                            <div class="w-7 h-7 bg-slate-300 rounded-2xl border-2 border-slate-900 flex items-center justify-center text-[10px] font-bold text-slate-800">A</div>
+                            <div class="w-7 h-7 bg-sky-300 rounded-2xl border-2 border-slate-900 flex items-center justify-center text-[10px] font-bold text-slate-800">S</div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="text-emerald-400 text-sm font-medium flex items-center gap-x-1">
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                            <i class="fa-solid fa-star"></i>
+                        </div>
+                        <div class="text-xs text-slate-400">4.98 • 412 happy customers</div>
+                    </div>
+                </div>
+                
+                <!-- Trust signals -->
+                <div class="mt-16 grid grid-cols-3 gap-6 text-xs">
+                    <div class="flex items-center gap-x-3">
+                        <i class="fa-solid fa-shield-halved text-3xl text-sky-400"></i>
+                        <div>
+                            <div class="font-semibold text-white">30-Day Warranty</div>
+                            <div class="text-slate-400 text-[10px]">On all repairs</div>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-x-3">
+                        <i class="fa-solid fa-user-shield text-3xl text-sky-400"></i>
+                        <div>
+                            <div class="font-semibold text-white">Verified Techs</div>
+                            <div class="text-slate-400 text-[10px]">Background checked</div>
+                        </div>
+                    </div>
+                    <div class="flex items-center gap-x-3">
+                        <i class="fa-solid fa-certificate text-3xl text-sky-400"></i>
+                        <div>
+                            <div class="font-semibold text-white">Genuine Parts</div>
+                            <div class="text-slate-400 text-[10px]">100% authentic</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- HERO RIGHT SIDE -->
+            <div class="hidden md:flex md:col-span-5 justify-end">
+                <div class="bg-slate-900/70 backdrop-blur-xl border border-slate-700 rounded-3xl p-2 shadow-2xl max-w-xs">
+                    <div class="bg-slate-800 rounded-3xl overflow-hidden">
+                        <!-- Fake hero image content -->
+                        <div class="h-80 bg-[url('https://picsum.photos/id/1015/800/1000')] bg-cover relative">
+                            <div class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-slate-900/70"></div>
+                            
+                            <!-- Technician overlay badge -->
+                            <div class="absolute bottom-6 left-6 bg-white text-slate-900 text-[10px] font-bold px-4 py-1 rounded-3xl flex items-center gap-x-2 shadow">
+                                <div class="w-3 h-3 bg-emerald-400 rounded-full animate-pulse"></div>
+                                ON THE WAY
+                            </div>
+                            
+                            <div class="absolute top-6 right-6 bg-white/90 text-slate-900 text-xs font-semibold px-3 py-1 rounded-2xl flex items-center">
+                                <i class="fa-solid fa-clock mr-1"></i>
+                                <span>60 min</span>
+                            </div>
+                            
+                            <!-- AC unit mock -->
+                            <div class="absolute -bottom-6 left-12 w-40 h-40 bg-slate-700 rounded-3xl shadow-2xl border border-slate-400 flex items-center justify-center rotate-12">
+                                <div class="text-center">
+                                    <i class="fa-solid fa-fan text-6xl text-sky-300 animate-spin-slow"></i>
+                                    <div class="text-[10px] font-mono text-sky-200 mt-3">AC UNIT</div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="p-5">
+                            <div class="flex justify-between items-center">
+                                <div>
+                                    <div class="text-sky-400 text-sm font-medium">Next available in</div>
+                                    <div class="text-4xl font-semibold text-white tracking-tighter font-mono">41</div>
+                                    <div class="text-xs text-slate-400 -mt-1">minutes</div>
+                                </div>
+                                <div class="text-right">
+                                    <div class="px-5 py-2 bg-yellow-400 text-slate-900 text-sm font-semibold rounded-2xl">BOOK NOW</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- SCROLL INDICATOR -->
+        <div class="hidden xl:flex absolute bottom-12 left-1/2 flex-col items-center gap-y-1 text-xs tracking-[2px]">
+            <div class="text-slate-400">SCROLL FOR MORE</div>
+            <i class="fa-solid fa-chevron-down text-sky-300 animate-bounce"></i>
+        </div>
+        
+        <!-- SERVICE AREAS PILLS -->
+        <div class="absolute bottom-8 right-8 hidden lg:flex flex-col gap-2">
+            <div onclick="smoothScrollTo('areas')" 
+                 class="location-pill cursor-pointer text-[10px] font-medium bg-white/10 text-white px-5 py-2 rounded-3xl flex items-center gap-x-2">
+                <i class="fa-solid fa-location-dot"></i>
+                <span>GREATER NOIDA</span>
+            </div>
+            <div onclick="smoothScrollTo('areas')" 
+                 class="location-pill cursor-pointer text-[10px] font-medium bg-white/10 text-white px-5 py-2 rounded-3xl flex items-center gap-x-2">
+                <i class="fa-solid fa-location-dot"></i>
+                <span>DADRI • SURAJPUR</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- STATS BAR -->
+    <div class="bg-slate-900 py-6 border-b border-t border-slate-700">
+        <div class="max-w-screen-2xl mx-auto px-10">
+            <div class="grid grid-cols-3 md:grid-cols-6 gap-8 items-center">
+                <div class="flex items-center gap-x-4">
+                    <div class="text-4xl font-semibold text-sky-400 stat-number" data-target="1248">0</div>
+                    <div class="text-xs leading-none">
+                        JOBS<br>
+                        <span class="font-medium text-slate-400">COMPLETED</span>
+                    </div>
+                </div>
+                <div class="flex items-center gap-x-4">
+                    <div class="text-4xl font-semibold text-sky-400 stat-number" data-target="87">0</div>
+                    <div class="text-xs leading-none">
+                        AVG RESPONSE<br>
+                        <span class="font-medium text-slate-400">MINUTES</span>
+                    </div>
+                </div>
+                <div class="flex items-center gap-x-4">
+                    <div class="text-4xl font-semibold text-sky-400 stat-number" data-target="4.98">0</div>
+                    <div class="text-xs leading-none">
+                        CUSTOMER<br>
+                        <span class="font-medium text-slate-400">RATING</span>
+                    </div>
+                </div>
+                <div class="col-span-3 md:col-span-3 border-l border-slate-700 pl-8 hidden md:block">
+                    <div class="flex items-center text-xs gap-x-8 text-slate-400">
+                        <div class="flex items-center gap-x-2">
+                            <i class="fa-solid fa-check-circle text-emerald-400"></i>
+                            <span class="font-medium">Background verified</span>
+                        </div>
+                        <div class="flex items-center gap-x-2">
+                            <i class="fa-solid fa-check-circle text-emerald-400"></i>
+                            <span class="font-medium">Trained technicians</span>
+                        </div>
+                        <div class="flex items-center gap-x-2">
+                            <i class="fa-solid fa-check-circle text-emerald-400"></i>
+                            <span class="font-medium">Insurance covered</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SERVICE AREAS -->
+    <section id="areas" class="py-20 bg-white text-slate-900">
+        <div class="max-w-screen-2xl mx-auto px-8">
+            <div class="flex flex-col md:flex-row gap-12 items-center">
+                <div class="md:w-5/12">
+                    <div class="inline px-4 py-1 bg-sky-100 text-sky-700 text-sm font-medium rounded-3xl">WE SERVE</div>
+                    <h2 class="text-5xl font-semibold tracking-tight text-slate-900 mt-3">Our Service Areas</h2>
+                    <p class="text-slate-600 mt-4 max-w-xs">
+                        Fast 60-minute response in Greater Noida West and nearby residential zones.
+                    </p>
+                    
+                    <div class="mt-8 space-y-6">
+                        <div class="flex gap-6 items-start">
+                            <div class="text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-b from-sky-400 to-slate-300">01</div>
+                            <div>
+                                <div class="font-semibold">Greater Noida</div>
+                                <div class="text-slate-500 text-sm">All sectors, Omicron, Zeta, Pi, Omega, Chi</div>
+                            </div>
+                        </div>
+                        <div class="flex gap-6 items-start">
+                            <div class="text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-b from-sky-400 to-slate-300">02</div>
+                            <div>
+                                <div class="font-semibold">Dadri &amp; Surajpur</div>
+                                <div class="text-slate-500 text-sm">Including villages and industrial areas</div>
+                            </div>
+                        </div>
+                        <div class="flex gap-6 items-start">
+                            <div class="text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-b from-sky-400 to-slate-300">03</div>
+                            <div>
+                                <div class="font-semibold">Aither, Indirapuram, Ghaziabad</div>
+                                <div class="text-slate-500 text-sm">Cross-city doorstep repair</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <button onclick="showBookingModal()" 
+                            class="mt-12 flex items-center gap-x-4 group">
+                        <span class="text-sm font-medium tracking-widest">SEE ALL LOCATIONS</span>
+                        <div class="w-9 h-px bg-slate-400 group-hover:w-12 transition-all"></div>
+                    </button>
+                </div>
+                
+                <!-- Interactive map mock -->
+                <div class="md:w-7/12 bg-slate-100 border border-slate-200 rounded-3xl p-6 relative overflow-hidden h-96 flex items-center justify-center">
+                    <div class="w-full h-full bg-[radial-gradient(#0ea5e9_1px,transparent_1px)] [background-size:40px_40px] opacity-10 absolute"></div>
+                    
+                    <div class="text-center z-10">
+                        <div class="mx-auto w-40 h-40 rounded-full border-8 border-sky-400 flex items-center justify-center relative">
+                            <div class="w-24 h-24 bg-sky-500 rounded-full flex items-center justify-center text-white">
+                                <i class="fa-solid fa-map-location-dot text-5xl"></i>
+                            </div>
+                            <!-- pulsing rings -->
+                            <div class="absolute w-40 h-40 border border-sky-300 rounded-full animate-ping opacity-30"></div>
+                            <div class="absolute w-56 h-56 border border-sky-300 rounded-full animate-ping opacity-20" style="animation-delay:600ms"></div>
+                        </div>
+                        
+                        <div class="mt-8 text-sm font-medium text-slate-500">60 MINUTE DOORSTEP IN THESE AREAS</div>
+                        
+                        <div class="flex justify-center gap-4 mt-8 flex-wrap">
+                            <div class="bg-white shadow text-xs font-medium px-6 py-3 rounded-3xl">Greater Noida</div>
+                            <div class="bg-white shadow text-xs font-medium px-6 py-3 rounded-3xl">Dadri</div>
+                            <div class="bg-white shadow text-xs font-medium px-6 py-3 rounded-3xl">Surajpur</div>
+                            <div class="bg-white shadow text-xs font-medium px-6 py-3 rounded-3xl">Aither</div>
+                            <div class="bg-white shadow text-xs font-medium px-6 py-3 rounded-3xl">Indirapuram</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CORE SERVICES -->
+    <section id="services" class="py-24 bg-slate-950">
+        <div class="max-w-screen-2xl mx-auto px-8">
+            <div class="text-center mb-16">
+                <span class="px-6 py-2 bg-yellow-400 text-slate-950 text-xs font-bold rounded-full">OUR EXPERTISE</span>
+                <h2 class="section-header text-5xl font-semibold text-white mt-4 inline-block">Premium Services</h2>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Card 1 -->
+                <div onclick="selectService(0)" class="service-card bg-slate-900 border border-slate-700 rounded-3xl p-6 cursor-pointer group">
+                    <div class="service-icon w-14 h-14 bg-sky-500/10 text-sky-400 flex items-center justify-center rounded-2xl text-4xl mb-6">
+                        💧
+                    </div>
+                    <div class="font-semibold text-2xl text-white">AC Wet Service</div>
+                    <div class="text-slate-400 text-sm mt-2 leading-tight">High-pressure jet cleaning of indoor &amp; outdoor units. Removes dust, mold &amp; bacteria.</div>
+                    
+                    <div class="mt-auto pt-8 flex items-end justify-between">
+                        <div>
+                            <div class="text-xs text-slate-500">STARTING AT</div>
+                            <div class="text-4xl font-semibold text-white">₹300</div>
+                        </div>
+                        <div class="text-xs bg-emerald-900 text-emerald-300 px-4 py-2 rounded-2xl font-medium flex items-center gap-x-2">
+                            <i class="fa-solid fa-medal"></i>
+                            <span>30 DAY</span>
+                        </div>
+                    </div>
+                    
+                    <div class="h-2 bg-gradient-to-r from-sky-400 to-cyan-400 mt-10 rounded-3xl"></div>
+                </div>
+                
+                <!-- Card 2 -->
+                <div onclick="selectService(1)" class="service-card bg-slate-900 border border-slate-700 rounded-3xl p-6 cursor-pointer group">
+                    <div class="service-icon w-14 h-14 bg-amber-500/10 text-amber-400 flex items-center justify-center rounded-2xl text-4xl mb-6">
+                        🔧
+                    </div>
+                    <div class="font-semibold text-2xl text-white">AC Repair &amp; Gas Fill</div>
+                    <div class="text-slate-400 text-sm mt-2 leading-tight">Cooling problems, gas leakage, PCB issues. Fast diagnosis and repair.</div>
+                    
+                    <div class="mt-auto pt-8 flex items-end justify-between">
+                        <div>
+                            <div class="text-xs text-slate-500">STARTING AT</div>
+                            <div class="text-4xl font-semibold text-white">₹3000</div>
+                        </div>
+                        <div class="text-xs bg-emerald-900 text-emerald-300 px-4 py-2 rounded-2xl font-medium flex items-center gap-x-2">
+                            <i class="fa-solid fa-medal"></i>
+                            <span>30 DAY</span>
+                        </div>
+                    </div>
+                    
+                    <div class="h-2 bg-gradient-to-r from-amber-400 to-yellow-400 mt-10 rounded-3xl"></div>
+                </div>
+                
+                <!-- Card 3 -->
+                <div onclick="selectService(2)" class="service-card bg-slate-900 border border-slate-700 rounded-3xl p-6 cursor-pointer group">
+                    <div class="service-icon w-14 h-14 bg-violet-500/10 text-violet-400 flex items-center justify-center rounded-2xl text-4xl mb-6">
+                        📦
+                    </div>
+                    <div class="font-semibold text-2xl text-white">AC Install / Uninstall</div>
+                    <div class="text-slate-400 text-sm mt-2 leading-tight">Split and window AC mounting, shifting &amp; removal by experts.</div>
+                    
+                    <div class="mt-auto pt-8 flex items-end justify-between">
+                        <div>
+                            <div class="text-xs text-slate-500">STARTING AT</div>
+                            <div class="text-4xl font-semibold text-white">₹700</div>
+                        </div>
+                        <div class="text-xs bg-emerald-900 text-emerald-300 px-4 py-2 rounded-2xl font-medium flex items-center gap-x-2">
+                            <i class="fa-solid fa-medal"></i>
+                            <span>30 DAY</span>
+                        </div>
+                    </div>
+                    
+                    <div class="h-2 bg-gradient-to-r from-violet-400 to-purple-400 mt-10 rounded-3xl"></div>
+                </div>
+                
+                <!-- Card 4 -->
+                <div onclick="selectService(3)" class="service-card bg-slate-900 border border-slate-700 rounded-3xl p-6 cursor-pointer group">
+                    <div class="service-icon w-14 h-14 bg-red-500/10 text-red-400 flex items-center justify-center rounded-2xl text-4xl mb-6">
+                        ❄️
+                    </div>
+                    <div class="font-semibold text-2xl text-white">Refrigerator Repair</div>
+                    <div class="text-slate-400 text-sm mt-2 leading-tight">Single door, double door, deep freezer &amp; commercial units. Gas charging.</div>
+                    
+                    <div class="mt-auto pt-8 flex items-end justify-between">
+                        <div>
+                            <div class="text-xs text-slate-500">INSPECTION</div>
+                            <div class="text-4xl font-semibold text-white">₹500</div>
+                        </div>
+                        <div class="text-xs bg-emerald-900 text-emerald-300 px-4 py-2 rounded-2xl font-medium flex items-center gap-x-2">
+                            <i class="fa-solid fa-medal"></i>
+                            <span>30 DAY</span>
+                        </div>
+                    </div>
+                    
+                    <div class="h-2 bg-gradient-to-r from-red-400 to-rose-400 mt-10 rounded-3xl"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PRICING HIGHLIGHTS -->
+    <section id="pricing" class="py-20 bg-white">
+        <div class="max-w-screen-2xl mx-auto px-8">
+            <div class="grid grid-cols-12 gap-x-6">
+                <div class="col-span-12 lg:col-span-5">
+                    <div class="sticky top-24">
+                        <span class="text-xs font-bold text-amber-500 tracking-widest">TRANSPARENT PRICING</span>
+                        <h2 class="text-5xl font-semibold text-slate-900 mt-2">No hidden charges.<br>Ever.</h2>
+                        <p class="mt-6 text-slate-600 max-w-xs">
+                            Our prices are fixed and competitive. What you see is what you pay.
+                        </p>
+                        
+                        <div class="mt-12 bg-slate-100 rounded-3xl p-8">
+                            <div class="flex gap-6">
+                                <i class="fa-solid fa-handshake text-6xl text-slate-300"></i>
+                                <div class="text-xs">
+                                    <div class="uppercase font-semibold text-slate-400">30 days warranty on</div>
+                                    <ul class="text-slate-600 space-y-4 mt-6">
+                                        <li class="flex items-center gap-x-2"><span class="text-emerald-500">✔</span> All repairs</li>
+                                        <li class="flex items-center gap-x-2"><span class="text-emerald-500">✔</span> Gas charging</li>
+                                        <li class="flex items-center gap-x-2"><span class="text-emerald-500">✔</span> Installation work</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-span-12 lg:col-span-7 mt-12 lg:mt-0">
+                    <div class="space-y-6">
+                        <div class="grid grid-cols-12 items-center gap-6 bg-slate-50 border border-slate-100 rounded-3xl px-8 py-7 hover:border-sky-200 transition-colors">
+                            <div class="col-span-7">
+                                <div class="font-medium text-lg">AC Deep Cleaning (Wet Service)</div>
+                                <div class="text-xs text-slate-500">Indoor + outdoor unit • 2 technicians • 90 minutes</div>
+                            </div>
+                            <div class="col-span-3 text-right">
+                                <div class="text-xs text-slate-400">ONLY</div>
+                                <div class="font-mono text-4xl font-semibold text-slate-900">300</div>
+                            </div>
+                            <div class="col-span-2">
+                                <button onclick="bookService('AC Wet Service - ₹300')" 
+                                        class="w-full bg-slate-900 text-white py-6 text-xs font-bold rounded-3xl">SELECT</button>
+                            </div>
+                        </div>
+                        
+                        <div class="grid grid-cols-12 items-center gap-6 bg-slate-50 border border-slate-100 rounded-3xl px-8 py-7 hover:border-sky-200 transition-colors">
+                            <div class="col-span-7">
+                                <div class="font-medium text-lg">AC Gas Charging &amp; Repair</div>
+                                <div class="text-xs text-slate-500">Leakage fix + R32 / R410 gas top up</div>
+                            </div>
+                            <div class="col-span-3 text-right">
+                                <div class="text-xs text-slate-400">FROM</div>
+                                <div class="font-mono text-4xl font-semibold text-slate-900">2999</div>
+                            </div>
+                            <div class="col-span-2">
+                                <button onclick="bookService('AC Repair &amp; Gas Charging')" 
+                                        class="w-full bg-slate-900 text-white py-6 text-xs font-bold rounded-3xl">SELECT</button>
+                            </div>
+                        </div>
+                        
+                        <div class="grid grid-cols-12 items-center gap-6 bg-slate-50 border border-slate-100 rounded-3xl px-8 py-7 hover:border-sky-200 transition-colors">
+                            <div class="col-span-7">
+                                <div class="font-medium text-lg">Split / Window AC Installation</div>
+                                <div class="text-xs text-slate-500">Includes mounting, wiring &amp; testing</div>
+                            </div>
+                            <div class="col-span-3 text-right">
+                                <div class="text-xs text-slate-400">FROM</div>
+                                <div class="font-mono text-4xl font-semibold text-slate-900">899</div>
+                            </div>
+                            <div class="col-span-2">
+                                <button onclick="bookService('AC Installation')" 
+                                        class="w-full bg-slate-900 text-white py-6 text-xs font-bold rounded-3xl">SELECT</button>
+                            </div>
+                        </div>
+                        
+                        <div class="grid grid-cols-12 items-center gap-6 bg-slate-50 border border-slate-100 rounded-3xl px-8 py-7 hover:border-sky-200 transition-colors">
+                            <div class="col-span-7">
+                                <div class="font-medium text-lg">Refrigerator / Freezer Repair</div>
+                                <div class="text-xs text-slate-500">Inspection + gas charging</div>
+                            </div>
+                            <div class="col-span-3 text-right">
+                                <div class="text-xs text-slate-400">FROM</div>
+                                <div class="font-mono text-4xl font-semibold text-slate-900">500</div>
+                            </div>
+                            <div class="col-span-2">
+                                <button onclick="bookService('Refrigerator Repair')" 
+                                        class="w-full bg-slate-900 text-white py-6 text-xs font-bold rounded-3xl">SELECT</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TESTIMONIALS -->
+    <section id="testimonials" class="py-24 bg-slate-950 text-white">
+        <div class="max-w-screen-2xl mx-auto px-8">
+            <div class="flex justify-between items-baseline mb-12">
+                <div>
+                    <span class="uppercase text-xs text-sky-400 font-semibold">Real stories</span>
+                    <h2 class="text-4xl font-semibold">Happy customers from your area</h2>
+                </div>
+                <a href="#" onclick="event.preventDefault()" class="text-xs hidden md:flex items-center gap-x-3 group">
+                    VIEW ALL REVIEWS 
+                    <span class="block w-8 h-px bg-white group-hover:w-12 transition-all"></span>
+                </a>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Testimonial 1 -->
+                <div class="bg-slate-900 rounded-3xl p-8">
+                    <div class="flex gap-x-1 text-amber-300 text-xl">
+                        ★★★★☆
+                    </div>
+                    <p class="mt-6 text-slate-300">
+                        "Called at 9am, technician arrived by 10:15am. My AC is working like new after the wet service. 
+                        Very professional and honest pricing."
+                    </p>
+                    <div class="mt-8 flex items-center gap-x-3">
+                        <div class="w-9 h-9 bg-orange-200 rounded-2xl"></div>
+                        <div>
+                            <div class="text-sm font-medium">Ramesh Sharma</div>
+                            <div class="text-xs text-slate-500">Surajpur, Greater Noida • 4 days ago</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Testimonial 2 -->
+                <div class="bg-slate-900 rounded-3xl p-8">
+                    <div class="flex gap-x-1 text-amber-300 text-xl">
+                        ★★★★★
+                    </div>
+                    <p class="mt-6 text-slate-300">
+                        "My double door fridge stopped cooling. They charged gas and replaced a small relay. 
+                        Charged fairly and gave 30 day warranty. Highly recommended."
+                    </p>
+                    <div class="mt-8 flex items-center gap-x-3">
+                        <div class="w-9 h-9 bg-blue-200 rounded-2xl"></div>
+                        <div>
+                            <div class="text-sm font-medium">Meena Patel</div>
+                            <div class="text-xs text-slate-500">Aither • 2 weeks ago</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Testimonial 3 -->
+                <div class="bg-slate-900 rounded-3xl p-8">
+                    <div class="flex gap-x-1 text-amber-300 text-xl">
+                        ★★★★☆
+                    </div>
+                    <p class="mt-6 text-slate-300">
+                        "Installed new 1.5 ton split AC in my living room. Neat work and they cleaned the old one for free. 
+                        Excellent service from CoolTech."
+                    </p>
+                    <div class="mt-8 flex items-center gap-x-3">
+                        <div class="w-9 h-9 bg-purple-200 rounded-2xl"></div>
+                        <div>
+                            <div class="text-sm font-medium">Vikas Yadav</div>
+                            <div class="text-xs text-slate-500">Dadri • Yesterday</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FINAL CTA -->
+    <div class="bg-gradient-to-r from-sky-500 to-cyan-400 py-16">
+        <div class="max-w-screen-2xl mx-auto px-8">
+            <div class="rounded-3xl bg-white/10 backdrop-blur-lg border border-white/30 p-12 md:p-20 flex flex-col md:flex-row items-center justify-between gap-8">
+                <div class="max-w-md">
+                    <div class="text-white text-4xl font-semibold leading-none tracking-tighter">Need urgent AC or fridge repair?</div>
+                    <div class="mt-4 text-sky-100">Our experts are ready to help in under 60 minutes in your locality.</div>
+                </div>
+                
+                <div onclick="showBookingModal()" 
+                     class="cursor-pointer bg-white text-slate-950 font-semibold text-2xl px-16 py-7 rounded-3xl flex items-center gap-x-6 shadow-2xl">
+                    <span>BOOK SERVICE</span> 
+                    <i class="fa-solid fa-arrow-right text-3xl"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="bg-slate-950 text-slate-400">
+        <div class="max-w-screen-2xl mx-auto px-8 pt-20 pb-8">
+            <div class="grid grid-cols-2 md:grid-cols-5 gap-y-12">
+                <div>
+                    <div class="flex items-center gap-x-3 text-white">
+                        <div class="w-9 h-9 bg-sky-500 text-white rounded-2xl flex items-center justify-center">
+                            <i class="fa-solid fa-snowflake"></i>
+                        </div>
+                        <span class="logo-font text-4xl font-semibold tracking-tighter">COOLTECH</span>
+                    </div>
+                    <p class="text-xs mt-8 leading-relaxed max-w-[190px]">
+                        Premium HVAC &amp; refrigeration repair and maintenance in Greater Noida and surrounding areas.
+                    </p>
+                    <div class="mt-8 text-xs">© 2025 CoolTech Services</div>
+                </div>
+                
+                <div>
+                    <div class="uppercase text-[10px] font-semibold mb-6 text-slate-300">Company</div>
+                    <div class="space-y-4 text-sm">
+                        <div class="cursor-pointer hover:text-white">About us</div>
+                        <div class="cursor-pointer hover:text-white">Careers</div>
+                        <div class="cursor-pointer hover:text-white">Blog</div>
+                    </div>
+                </div>
+                
+                <div>
+                    <div class="uppercase text-[10px] font-semibold mb-6 text-slate-300">Services</div>
+                    <div class="space-y-4 text-sm">
+                        <div onclick="selectService(0)" class="cursor-pointer hover:text-white">AC Cleaning</div>
+                        <div onclick="selectService(1)" class="cursor-pointer hover:text-white">AC Repair</div>
+                        <div onclick="selectService(2)" class="cursor-pointer hover:text-white">Installation</div>
+                        <div onclick="selectService(3)" class="cursor-pointer hover:text-white">Fridge Repair</div>
+                    </div>
+                </div>
+                
+                <div>
+                    <div class="uppercase text-[10px] font-semibold mb-6 text-slate-300">Locations</div>
+                    <div class="space-y-4 text-sm">
+                        <div class="cursor-pointer hover:text-white">Greater Noida</div>
+                        <div class="cursor-pointer hover:text-white">Dadri</div>
+                        <div class="cursor-pointer hover:text-white">Surajpur</div>
+                        <div class="cursor-pointer hover:text-white">Indirapuram</div>
+                        <div class="cursor-pointer hover:text-white">Ghaziabad</div>
+                    </div>
+                </div>
+                
+                <div>
+                    <div class="bg-slate-900 rounded-3xl p-6 text-xs">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <div class="font-medium text-white">Talk to us</div>
+                                <a href="tel:6363918128" class="font-mono text-3xl text-white mt-1 block">63639 18128</a>
+                            </div>
+                            <i onclick="window.open('https://wa.me/916363918128','_blank')" 
+                               class="fa-solid fa-whatsapp text-5xl text-emerald-400 cursor-pointer"></i>
+                        </div>
+                        <div class="text-[10px] mt-8 text-slate-400">Available 8am - 9pm everyday</div>
+                    </div>
+                    
+                    <div class="mt-6 text-[10px] flex items-center gap-x-5">
+                        <div class="flex-1 h-px bg-slate-700"></div>
+                        <div>OR</div>
+                        <div class="flex-1 h-px bg-slate-700"></div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="pt-16 mt-20 border-t border-slate-800 text-[10px] flex flex-col md:flex-row justify-between items-center gap-y-4">
+                <div>Made with ❤️ for the homes of Greater Noida</div>
+                <div class="flex gap-x-6">
+                    <i class="fa-brands fa-instagram cursor-pointer hover:text-sky-300"></i>
+                    <i class="fa-brands fa-youtube cursor-pointer hover:text-sky-300"></i>
+                </div>
+                <div>Privacy • Terms</div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- FLOATING WHATSAPP -->
+    <div onclick="openWhatsApp()" 
+         class="fixed bottom-8 right-8 bg-[#25D366] text-white w-16 h-16 rounded-3xl flex items-center justify-center shadow-2xl shadow-green-600 text-4xl z-[9999] floating-btn cursor-pointer">
+        <i class="fa-brands fa-whatsapp"></i>
+    </div>
+
+    <!-- BOOKING MODAL -->
+    <div onclick="if(event.target.id === 'modal-backdrop') hideBookingModal()" 
+         id="modal-backdrop"
+         class="hidden fixed inset-0 bg-black/70 flex items-end md:items-center justify-center z-[99999]">
+        <div onclick="event.stopImmediatePropagation()" 
+             class="bg-white text-slate-900 w-full max-w-lg md:rounded-3xl rounded-t-3xl md:mt-0 mt-auto overflow-hidden">
+            
+            <!-- modal header -->
+            <div class="px-8 pt-8 pb-4 border-b flex items-center justify-between">
+                <div class="font-semibold text-2xl">Book a service</div>
+                <div onclick="hideBookingModal()" class="w-8 h-8 flex items-center justify-center text-3xl leading-none cursor-pointer">×</div>
+            </div>
+            
+            <div class="p-8">
+                <form id="booking-form" onsubmit="handleSubmit(event)">
+                    <div class="space-y-6">
+                        <!-- Service select -->
+                        <div>
+                            <label class="block text-xs font-medium text-slate-500 mb-2">WHAT DO YOU NEED?</label>
+                            <select id="service-select" 
+                                    class="w-full border border-slate-300 focus:border-sky-400 rounded-3xl py-6 px-6 text-base outline-none">
+                                <option value="">Select a service...</option>
+                                <option value="AC Wet Service - ₹300">AC Wet Service - ₹300</option>
+                                <option value="AC Repair &amp; Gas Charging">AC Repair &amp; Gas Charging</option>
+                                <option value="AC Installation / Uninstallation">AC Installation / Uninstallation</option>
+                                <option value="Refrigerator Repair">Refrigerator Repair</option>
+                            </select>
+                        </div>
+                        
+                        <div class="grid grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-xs font-medium text-slate-500 mb-2">YOUR NAME</label>
+                                <input id="name" type="text" 
+                                       class="w-full border border-slate-300 focus:border-sky-400 rounded-3xl py-6 px-6 outline-none"
+                                       placeholder="Aman Sharma" required>
+                            </div>
+                            <div>
+                                <label class="block text-xs font-medium text-slate-500 mb-2">PHONE</label>
+                                <input id="phone" type="tel" value="6363918128"
+                                       class="w-full border border-slate-300 focus:border-sky-400 rounded-3xl py-6 px-6 outline-none font-mono"
+                                       required>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <label class="block text-xs font-medium text-slate-500 mb-2">ADDRESS / LANDMARK</label>
+                            <input id="address" type="text" 
+                                   class="w-full border border-slate-300 focus:border-sky-400 rounded-3xl py-6 px-6 outline-none"
+                                   placeholder="Tower 4, Sector 12, Greater Noida" required>
+                        </div>
+                        
+                        <div class="grid grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-xs font-medium text-slate-500 mb-2">DATE</label>
+                                <input id="date" type="date" 
+                                       class="w-full border border-slate-300 focus:border-sky-400 rounded-3xl py-6 px-6 outline-none"
+                                       value="2025-02-08">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-medium text-slate-500 mb-2">PREFERRED TIME</label>
+                                <select id="time" 
+                                        class="w-full border border-slate-300 focus:border-sky-400 rounded-3xl py-6 px-6 outline-none">
+                                    <option value="ASAP">As soon as possible</option>
+                                    <option value="10:00 AM">10:00 AM</option>
+                                    <option value="11:30 AM" selected>11:30 AM</option>
+                                    <option value="2:00 PM">2:00 PM</option>
+                                    <option value="4:30 PM">4:30 PM</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div class="pt-4">
+                            <button type="submit"
+                                    class="w-full py-7 bg-slate-900 hover:bg-black transition-colors text-white text-xl font-semibold rounded-3xl flex justify-center items-center gap-x-4">
+                                CONFIRM BOOKING
+                                <i class="fa-solid fa-arrow-right"></i>
+                            </button>
+                        </div>
+                        
+                        <div class="text-center text-xs text-slate-400">
+                            A technician will call you within 10 minutes
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- SUCCESS MODAL -->
+    <div id="success-modal" onclick="if(event.target.id === 'success-backdrop') hideSuccessModal()" 
+         class="hidden fixed inset-0 bg-black/60 z-[999999] flex items-center justify-center">
+        <div onclick="event.stopImmediatePropagation()" 
+             class="max-w-xs bg-white rounded-3xl text-center p-10">
+            <div class="mx-auto w-20 h-20 bg-emerald-100 text-emerald-500 rounded-2xl flex items-center justify-center text-5xl mb-6">
+                🎉
+            </div>
+            <div class="font-semibold text-2xl text-slate-800">Booking received!</div>
+            <div class="text-slate-500 mt-3 text-sm">Our team will contact you shortly at 63639 18128</div>
+            
+            <div onclick="hideSuccessModal()" 
+                 class="cursor-pointer mt-10 text-xs bg-slate-100 hover:bg-slate-200 transition-colors py-6 rounded-3xl font-medium">CLOSE</div>
+        </div>
+    </div>
+
+    <script>
+        function initializeTailwind() {
+            tailwind.config = {
+                content: [],
+                theme: {
+                    extend: {}
+                }
+            }
+        }
+        
+        function animateCounters() {
+            const counters = document.querySelectorAll('.stat-number')
+            
+            counters.forEach(counter => {
+                const target = parseFloat(counter.getAttribute('data-target'))
+                let count = 0
+                const increment = target / 60
+                
+                const timer = setInterval(() => {
+                    count += increment
+                    
+                    if (count >= target) {
+                        if (target % 1 === 0) {
+                            counter.textContent = Math.floor(target)
+                        } else {
+                            counter.textContent = target.toFixed(2)
+                        }
+                        clearInterval(timer)
+                    } else {
+                        if (target % 1 === 0) {
+                            counter.textContent = Math.floor(count)
+                        } else {
+                            counter.textContent = count.toFixed(2)
+                        }
+                    }
+                }, 20)
+            })
+        }
+        
+        function smoothScrollTo(section) {
+            let targetSection
+            
+            switch(section) {
+                case 'home':
+                    targetSection = document.getElementById('home')
+                    break
+                case 'services':
+                    targetSection = document.getElementById('services')
+                    break
+                case 'areas':
+                    targetSection = document.getElementById('areas')
+                    break
+                case 'pricing':
+                    targetSection = document.getElementById('pricing')
+                    break
+                case 'testimonials':
+                    targetSection = document.getElementById('testimonials')
+                    break
+                default:
+                    targetSection = document.getElementById('home')
+            }
+            
+            if (targetSection) {
+                const navHeight = 80
+                const elementPosition = targetSection.getBoundingClientRect().top
+                const offsetPosition = elementPosition + window.scrollY - navHeight
+                
+                window.scrollTo({
+                     top: offsetPosition,
+                     behavior: 'smooth'
+                })
+            }
+        }
+        
+        let mobileOpen = false
+        
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu')
+            mobileOpen = !mobileOpen
+            
+            if (mobileOpen) {
+                menu.classList.remove('hidden')
+                menu.classList.add('flex', 'flex-col')
+            } else {
+                menu.classList.add('hidden')
+                menu.classList.remove('flex', 'flex-col')
+            }
+        }
+        
+        function showBookingModal() {
+            const modal = document.getElementById('modal-backdrop')
+            modal.classList.remove('hidden')
+            modal.classList.add('flex')
+            
+            // reset form
+            const form = document.getElementById('booking-form')
+            if (form) form.reset()
+        }
+        
+        function hideBookingModal() {
+            const modal = document.getElementById('modal-backdrop')
+            modal.classList.add('hidden')
+            modal.classList.remove('flex')
+        }
+        
+        function hideSuccessModal() {
+            const modal = document.getElementById('success-modal')
+            modal.classList.add('hidden')
+            modal.classList.remove('flex')
+            hideBookingModal()
+        }
+        
+        function handleSubmit(e) {
+            e.preventDefault()
+            
+            // fake delay
+            setTimeout(() => {
+                hideBookingModal()
+                
+                const successModal = document.getElementById('success-modal')
+                successModal.classList.remove('hidden')
+                successModal.classList.add('flex')
+                
+                // reset form
+                const form = document.getElementById('booking-form')
+                if (form) form.reset()
+            }, 650)
+        }
+        
+        function selectService(n) {
+            const modal = document.getElementById('modal-backdrop')
+            modal.classList.remove('hidden')
+            modal.classList.add('flex')
+            
+            const select = document.getElementById('service-select')
+            
+            if (select) {
+                switch(n) {
+                    case 0:
+                        select.value = "AC Wet Service - ₹300"
+                        break
+                    case 1:
+                        select.value = "AC Repair &amp; Gas Charging"
+                        break
+                    case 2:
+                        select.value = "AC Installation / Uninstallation"
+                        break
+                    case 3:
+                        select.value = "Refrigerator Repair"
+                        break
+                }
+            }
+        }
+        
+        function bookService(serviceName) {
+            const modal = document.getElementById('modal-backdrop')
+            modal.classList.remove('hidden')
+            modal.classList.add('flex')
+            
+            const select = document.getElementById('service-select')
+            if (select) select.value = serviceName
+        }
+        
+        function openWhatsApp() {
+            window.open('https://wa.me/916363918128?text=Hi%2C%20I%20need%20urgent%20AC%20or%20fridge%20service%20in%20Greater%20Noida.', '_blank')
+        }
+        
+        function simulateLiveClock() {
+            let mins = 41
+            setInterval(() => {
+                mins = mins - 1
+                if (mins < 12) mins = 58
+            }, 8000)
+        }
+        
+        // Keyboard shortcuts
+        function handleKeys(e) {
+            if (e.metaKey && e.key === "k") {
+                e.preventDefault()
+                const modal = document.getElementById('modal-backdrop')
+                if (modal.classList.contains('hidden')) {
+                    showBookingModal()
+                } else {
+                    hideBookingModal()
+                }
+            }
+        }
+        
+        function addFakeLiveDot() {
+            const dot = document.createElement('div')
+            dot.style.cssText = 'position:absolute; top: 120px; right: 80px; width: 12px; height: 12px; background: #22c55e; border-radius: 9999px; box-shadow: 0 0 0 4px rgba(134, 239, 172, 0.5); animation: ping 1.5s linear infinite;'
+            document.body.append(dot)
+            
+            setTimeout(() => {
+                dot.remove()
+            }, 4500)
+        }
+        
+        // Main initialization
+        function initialize() {
+            initializeTailwind()
+            
+            // Tailwind script run
+            console.log('%cCoolTech HVAC Site ready 🚀', 'font-family:monospace;color:#0ea5e9;font-size:10px')
+            
+            // Start counters when scrolled into view
+            let countersAnimated = false
+            
+            function handleScroll() {
+                if (!countersAnimated && window.scrollY > 300) {
+                    animateCounters()
+                    countersAnimated = true
+                    window.removeEventListener('scroll', handleScroll)
+                }
+            }
+            
+            window.addEventListener('scroll', handleScroll)
+            
+            // Make phone number clickable everywhere
+            const phoneLinks = document.querySelectorAll('a[href^="tel:"]')
+            phoneLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    console.log('%cCalling 6363918128...', 'color:#eab308')
+                })
+            })
+            
+            // Keyboard
+            document.addEventListener('keydown', handleKeys)
+            
+            // Random live dot
+            setInterval(() => {
+                if (Math.random() > 0.6) addFakeLiveDot()
+            }, 3400)
+            
+            // Demo - auto open modal after some idle time
+            setTimeout(() => {
+                if (window.scrollY < 400) {
+                    // disabled for demo
+                    // showBookingModal()
+                }
+            }, 13500)
+            
+            // Make service cards more attractive on mobile
+            if (window.innerWidth < 768) {
+                const cards = document.querySelectorAll('.service-card')
+                cards.forEach((card, index) => {
+                    card.style.transitionDelay = (index * 80) + 'ms'
+                })
+            }
+            
+            // Activate animation on the fan icon inside hero
+            const style = document.createElement('style')
+            style.innerHTML = `
+                @keyframes spinSlow {
+                    from { transform: rotate(0deg); }
+                    to { transform: rotate(360deg); }
+                }
+                .animate-spin-slow {
+                    animation: spinSlow 8s linear infinite;
+                }
+                
+                .hero-bg::before {
+                    content: '';
+                    position: absolute;
+                    inset: 0;
+                    background: linear-gradient(180deg, transparent, rgba(15,23,42,0.3));
+                    pointer-events: none;
+                }
+            `
+            document.head.append(style)
+            
+            console.log('%c✅ Premium HVAC website ready for conversion', 'background:#0ea5e9;color:white;padding:2px 6px;border-radius:4px;font-size:10px')
+        }
+        
+        // Boot app
+        window.onload = initialize
+    </script>
+</body>
+</html>
